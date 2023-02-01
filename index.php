@@ -18,8 +18,6 @@ $bottles = filter_var($_GET['bottles'], FILTER_VALIDATE_INT);
 
 if (!$bottles) {
     $response['error'] = 'Incorrect value of bottles';
-    $response['value'] = $bottles;
-    $response['type'] = gettype($bottles);
     sendJson($response);
 }
 
