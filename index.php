@@ -36,9 +36,15 @@ if (is_float($bottles / $smallestTare)) {
 $data['bottles'] = $bottles;
 
 foreach ($tares as $tare) {
-    $crates = floor($bottles / $tare);
+    $crates = (int) floor($bottles / $tare);
+    if ($crates === 0) {
+        continue;
+    }
     $bottles = $bottles - $crates * $tare;
-    $data['crates'][$tare] = $crates;
+    $data['crates'][] = [
+        'tare' => $tare,
+        'crates' => $crates
+    ];
 }
 
 // Возвращаем JSON

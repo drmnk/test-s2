@@ -7,13 +7,16 @@ const api = 'http://localhost:8000'
 // Выберем элементы на странице
 const messageText = document.querySelector('#message')
 const errorText = document.querySelector('#error')
-const crates = document.querySelector('#crates')
+const cratesList = document.querySelector('#crates')
 const bottlesInput = document.querySelector('#bottlesInput')
 
 
 bottlesInput.addEventListener('keyup', async (e) => {
     resetElements()
     const bottles = e.target.value
+    if (!bottles) {
+        return
+    }
 
     try {
         const response = await ky.get(`${api}?bottles=${bottles}`).json()
@@ -29,12 +32,18 @@ bottlesInput.addEventListener('keyup', async (e) => {
             messageText.classList.remove('hidden')
         }
 
-        console.log(data.crates)
-
-        const cratesList = data.crates.map((key, value) => {
-            return `<li><strong>Ящики по ${key}:</strong> ${value}</li>`
-        })
-        console.log(cratesList)
+        const cratesListEntries = data.crates.map((item) => {
+            return `<li><strong>Ящики по ${item.tare}:</strong> ${item.crates}</li>`
+        }).join('')
+        console.log(data)
+        cratesList.innerHTML = `
+            <strong>Бутылок к отгрузке:</strong> ${data.bottles}
+            <br><br>
+            <ul>
+                ${cratesListEntries}
+            </ul>
+        `
+        cratesList.classList.remove('hidden')
     } catch (error) {
         // Не хочу сильно расписывать ошибки, просто выведем её в сообщение
         errorText.innerHTML = error
@@ -42,8 +51,8 @@ bottlesInput.addEventListener('keyup', async (e) => {
 })
 
 function resetElements() {
-    crates.innerHTML = ''
-    crates.classList.add('hidden')
+    cratesList.innerHTML = ''
+    cratesList.classList.add('hidden')
     errorText.innerHTML = ''
     errorText.classList.add('hidden')
     messageText.innerHTML = ''
