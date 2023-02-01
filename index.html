@@ -9,35 +9,38 @@
   </head>
   <body>
     <div class="container">
-      <!-- Input form -->
-      <div class="bottle-form">
-        <div>
-          <label for="bottles" style="font-weight: 500"
-            >Количество бутылок к отгрузке:</label
-          >
+      <div class="response">
+        <!-- Input form -->
+        <div class="bottle-form">
+          <div>
+            <label for="bottles" style="font-weight: 500"
+              >Количество бутылок к отгрузке:</label
+            >
+          </div>
+          <!-- Специально оставим поле текстовым, 
+                    чтобы протестировать возврат ошибок при некорректных значениях -->
+          <div style="margin-top: 1rem">
+            <input type="text" id="bottlesInput" />
+          </div>
         </div>
-        <!-- Специально оставим поле текстовым, 
-            чтобы протестировать возврат ошибок при некорректных значениях -->
-        <div style="margin-top: 1rem">
-          <input type="text" id="bottlesInput" />
+
+        <!-- Error -->
+        <div id="error" class="hidden">Произошла ошибка на странице</div>
+
+        <!-- Message -->
+        <div id="message" class="hidden">Это просто сообщение</div>
+
+        <!-- Crates -->
+        <div id="crates" class="hidden">
+          <strong>Бутылок к отгрузке:</strong> 15 <br /><br />
+          <ul>
+            <li><strong>Ящики по 12:</strong> 3</li>
+            <li><strong>Ящики по 6:</strong> 4</li>
+          </ul>
         </div>
-      </div>
-
-      <!-- Error -->
-      <div id="error" class="hidden">Произошла ошибка на странице</div>
-
-      <!-- Message -->
-      <div id="message" class="hidden">Это просто сообщение</div>
-
-      <!-- Crates -->
-      <div id="crates" class="hidden">
-        <strong>Бутылок к отгрузке:</strong> 15 <br /><br />
-        <ul>
-          <li><strong>Ящики по 12:</strong> 3</li>
-          <li><strong>Ящики по 6:</strong> 4</li>
-        </ul>
       </div>
     </div>
+
     <script type="module" src="app.js"></script>
   </body>
 </html>

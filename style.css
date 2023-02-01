@@ -24,6 +24,11 @@ body {
   border-radius: 1rem;
 }
 
+.response {
+  min-height: 50vh;
+  width: 20rem;
+}
+
 #error {
   color: red;
   margin-top: 1rem;
