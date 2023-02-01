@@ -46,6 +46,7 @@ bottlesInput.addEventListener('keyup', async (e) => {
         cratesList.classList.remove('hidden')
     } catch (error) {
         // Не хочу сильно расписывать ошибки, просто выведем её в сообщение
+        errorText.classList.remove('hidden')
         errorText.innerHTML = error
     }
 })
